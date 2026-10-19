@@ -1,8 +1,10 @@
 // swift-tools-version:5.8
 import PackageDescription
 
-// Use the local binary if true
-let useLocalBinary = Context.environment["VALHALLA_MOBILE_DEV"].flatMap(Bool.init) ?? false
+// Use the local binary if true. On the Outis branch the released binary is
+// stock Valhalla without the camera patch, so the local build is the default
+// (build it with ./build.sh, then assemble build/apple/valhalla-wrapper.xcframework).
+let useLocalBinary = Context.environment["VALHALLA_MOBILE_DEV"].flatMap(Bool.init) ?? true
 
 // Use the local binary
 var binaryTarget: Target = .binaryTarget(
